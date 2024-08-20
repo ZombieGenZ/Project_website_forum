@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+      
+      /* Background */
+      
+      #background {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        background-color: rgb(37, 47, 74);
+        min-height: 100vh;
+      }
+      
+      /* header */
+      
+      #forum-header {
+        width: 100%;
+        height: 70px;
+        background-color: rgb(26, 33, 53);
+        float: none;
+        position: absolute;
+      }
+      
+      /* header left */
+      
+      #forum-header-left {
+        width: 50%;
+        height: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+      }
+      
+      /* logo text */
+      
+      #logo-text {
+        display: inline;
+        color: white;
+        font-weight: bold;
+        margin-left: 20px;
+      }
+      
+      /* header right */
+      
+      #forum-header-right {
+        height: 100%;
+        float: right;
+      }
+      
+      /* user information */
+      
+      #header-user {
+        display: inline-block;
+        justify-content: flex-end;
+        right: 50px;
+      }
+      
+      /* user avatar */
+      
+      #header-user svg {
+        margin-top: 5px;
+        margin-right: 10px;
+        width: 60px;
+        height: auto;
+        cursor: pointer;
+        color: white;
+        transition: 0.25s;
+      }
+      #header-user svg:hover {
+        color: rgb(92, 203, 255);
+      }
+      
+      /* body */
+      
+      #forum-body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        flex: 1;
+      }
+      
+      /* nav bar */
+      
+      #body-nav {
+        flex: 0 0 100px;
+        padding: 10px;
+        margin-top: 60px;
+      }
+      
+      #body-toolbar {
+        flex: 0 0 100px;
+        padding: 10px;
+      }
+      
+      #body-content {
+        flex: 1;
+      }
+      .nav-bar ul {
+        list-style-type: none;
+        background-color: rgb(60, 84, 105);
+        padding: 10px;
+        margin: 10px;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+      .nav-bar li {
+        align-items: center;
+        justify-items: center;
+        float: left;
+      }
+      .nav-bar a {
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 20px;
+        display: block;
+        text-align: center;
+        transition: 0.25s;
+      }
+      #body-selected-location {
+        background-color: rgb(77, 98, 118);
+        border-bottom: 3.5px solid rgb(85, 116, 141);
+      }
+      .nav-bar a:hover:not(#body-selected-location) {
+        background-color: rgb(77, 98, 118);
+        border-bottom: 3.5px solid rgb(85, 116, 141);
+      }
+      
+      /* Error notification */
+      
+      #error-notification
+      {
+        margin-left: 2%;
+        margin-right: 2%;
+        padding: 10px;
+        color: white;
+        width: 96%;
+        height: 42px;
+        background-color: rgba(255, 0, 0, 0.838);
+        margin-top: 20px;
+        margin-bottom: 20px;
+        font-size: 16px;
+        overflow-y: auto;
+      }
+      
+      /* toolbar */
+      
+      #body-toolbar {
+        text-align: left;
+        display: flex;
+      }
+      
+      /* toolbar left */
+      
+      #body-toolbar-left {
+        width: 79%;
+        margin-right: 1%;
+        height: 100%;
+        display: inline-block;
+        background-color: rgb(60, 84, 105);
+        padding: 20px;
+      }
+      
+      #gui-create {
+        height: 100%;
+        width: 70%;
+      }
+      
+      #post-text {
+        color: white;
+        font-weight: bold;
+        margin-bottom: 50px;
+        margin-top: 30px;
+        margin-left: 20px;
+      }
+      
+      #title-input {
+        width: 500px;
+        height: 50px;
+        border: 0.5px solid rgb(157, 157, 157);
+        border-radius: 4px;
+        padding: 0 15px;
+        font-size: 23px;
+        transition: 0.25s;
+        user-select: none;
+      }
+      
+      #minicontent-input {
+        margin-top: 10px;
+        width: 600px;
+        height: 60px;
+        border: 0.5px solid rgb(157, 157, 157);
+        border-radius: 4px;
+        padding: 0 15px;
+        font-size: 23px;
+        transition: 0.25s;
+        user-select: none;
+      }
+      
+      #content-input {
+        margin-top: 10px;
+        width: 80%;
+        height: 200px;
+        border: 0.5px solid rgb(157, 157, 157);
+        border-radius: 4px;
+        padding: 0 15px;
+        font-size: 28px;
+        transition: 0.25s;
+        user-select: none;
+      }
+      
+      #newPost {
+        font-size: 20px;
+        background-color: rgb(0, 123, 255);
+        color: white;
+        border: 0.5px solid black;
+        cursor: pointer;
+        padding: 5px 20px 5px 20px;
+        transition: 0.25s;
+        user-select: none;
+      }
+      
+      #newPost:hover {
+        background-color: rgb(73, 167, 255);
+      }
+      
+      #cannelPost {
+        font-size: 20px;
+        background-color: rgb(255, 145, 0);
+        color: white;
+        border: 0.5px solid black;
+        cursor: pointer;
+        padding: 5px 20px 5px 20px;
+        transition: 0.25s;
+        user-select: none;
+      }
+      
+      #cannelPost:hover {
+        background-color: rgb(252, 167, 55);
+      }
+      
+      /* toolbar right */
+      
+      #body-toolbar-right {
+        width: 20%;
+        height: 23%;
+        float: right;
+        background-color: rgb(60, 84, 105);
+      }
+      
+      #body-information {
+        text-align: center;
+        margin-top: 5px;
+        color: white;
+        margin-bottom: 10px;
+      }
+      #body-information h1 {
+        line-height: 50px;
+        font-size: 30px;
+      }
+      #body-information p {
+        font-size: 20px;
+      }
+      
+    </style>
+    <title>Create</title>
+</head>
+<body>
+    <div id="background">
+        <header id="forum-header">
+            <div id="forum-header-left">
+                <h1 id="logo-text">GALAXYVIRUS FORUM</h1>
+            </div>
+            <div id="forum-header-right">
+                <a href="/forum/user/<%= accountLinnk %>" id="header-user">
+                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
+                        <path stroke-linecap="round" stroke-linejoin="round" d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z" />
+                    </svg>                      
+                </a>
+            </div>
+        </header>
+        <br>
+        <main id="forum-body">
+            <div id="body-nav">
+                <nav class="nav-bar">
+                    <ul>
+                        <li><a href="/forum" id="body-selected-location">Home</a></li>
+                        <li><a href="">About us</a></li>
+                        <li><a href="">Donate</a></li>
+                        <li><a href="">Support</a></li>
+                        <li><a href="">Contact</a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div id="error-notification"><p id="message-content-forum"><%= message %></p></div>
+            <div id="body-toolbar">
+                <div id="body-toolbar-left">
+                    <div id="gui-create">
+                        <h1 id="post-text">Edit post</h1>
+                        <form action="/forum/post/create" method="post">
+                          <input type="text" placeholder="Title" id="title-input" maxlength="40" name="title">
+                          <input type="text" placeholder="Subtitle" id="minicontent-input" maxlength="300" name="subtitle">
+                          <textarea name="content" id="content-input" cols="30" rows="10" placeholder="Content"></textarea>
+                          <br>
+                          <button id="newPost" type="submit">Post</button>
+                        </form>
+                        <a href="/forum">
+                          <button id="cannelPost">Cannel</button>
+                        </a>
+                    </div>
+                </div>
+                <div id="body-toolbar-right">
+                    <div id="body-information">
+                        <h1>Thông tin cá nhân</h1>
+                        <p>User: <%= ussername %></p>
+                        <p>Rank: <%= rank %></p>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+</body>
+</html>

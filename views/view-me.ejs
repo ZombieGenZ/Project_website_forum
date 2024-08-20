@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      * {
+        margin: 0;
+        box-sizing: border-box;
+      }
+
+      /* Background */
+
+      #background {
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1;
+        background-color: rgb(37, 47, 74);
+        min-height: 100vh;
+      }
+
+      /* header */
+
+      #forum-header {
+        width: 100%;
+        height: 70px;
+        background-color: rgb(26, 33, 53);
+        float: none;
+        position: absolute;
+      }
+
+      /* header left */
+
+      #forum-header-left {
+        width: 50%;
+        height: 100%;
+        float: left;
+        display: flex;
+        align-items: center;
+      }
+
+      /* logo text */
+
+      #logo-text {
+        display: inline;
+        color: white;
+        font-weight: bold;
+        margin-left: 20px;
+      }
+
+      /* header right */
+
+      #forum-header-right {
+        height: 100%;
+        float: right;
+      }
+
+      /* user information */
+
+      #header-user {
+        display: inline-block;
+        justify-content: flex-end;
+        right: 50px;
+      }
+
+      /* user avatar */
+
+      #header-user svg {
+        margin-top: 5px;
+        margin-right: 10px;
+        width: 60px;
+        height: auto;
+        cursor: pointer;
+        color: white;
+        transition: 0.25s;
+      }
+      #header-user svg:hover {
+        color: rgb(92, 203, 255);
+      }
+
+      /* body */
+
+      #forum-body {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+        flex: 1;
+      }
+
+      /* nav bar */
+
+      #body-nav {
+        flex: 0 0 100px;
+        padding: 10px;
+        margin-top: 60px;
+      }
+
+      #body-toolbar {
+        flex: 0 0 100px;
+        padding: 10px;
+      }
+
+      #body-content {
+        flex: 1;
+      }
+      .nav-bar ul {
+        list-style-type: none;
+        background-color: rgb(60, 84, 105);
+        padding: 10px;
+        margin: 10px;
+        overflow: hidden;
+        border-radius: 10px;
+      }
+      .nav-bar li {
+        align-items: center;
+        justify-items: center;
+        float: left;
+      }
+      .nav-bar a {
+        color: white;
+        font-weight: bold;
+        text-decoration: none;
+        padding: 20px;
+        display: block;
+        text-align: center;
+        transition: 0.25s;
+      }
+      #body-selected-location {
+        background-color: rgb(77, 98, 118);
+        border-bottom: 3.5px solid rgb(85, 116, 141);
+      }
+      .nav-bar a:hover:not(#body-selected-location) {
+        background-color: rgb(77, 98, 118);
+        border-bottom: 3.5px solid rgb(85, 116, 141);
+      }
+
+      /* toolbar */
+
+      #body-toolbar {
+        text-align: left;
+        display: flex;
+      }
+
+      /* toolbar left */
+
+      #body-toolbar-left {
+        width: 79%;
+        margin-right: 1%;
+        height: 100%;
+        display: inline-block;
+        background-color: rgb(60, 84, 105);
+        padding: 20px;
+        color: white;
+      }
+
+      #author a {
+        color: white;
+        text-decoration: none;
+        line-height: 30px;
+      }
+
+      #author a:hover {
+        color: rgb(0, 200, 255);
+      }
+
+      #information-post {
+        line-height: 30px;
+      }
+
+      #content {
+        margin-top: 20px;
+      }
+
+      /* toolbar right */
+
+      #body-toolbar-right {
+        width: 20%;
+        height: 120px;
+        float: right;
+        background-color: rgb(60, 84, 105);
+      }
+
+      #body-information {
+        text-align: center;
+        margin-top: 5px;
+        color: white;
+        margin-bottom: 10px;
+      }
+      #body-information h1 {
+        line-height: 50px;
+        font-size: 30px;
+      }
+      #body-information p {
+        font-size: 20px;
+      }
+
+      #edit {
+        width: 100px;
+        font-size: 15px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        background-color: hsl(300, 87%, 64%);
+        border: none;
+        margin-top: 20px;
+        transition: 0.25s;
+      }
+
+      #edit:hover {
+        background-color: hsl(300, 87%, 74%);
+      }
+
+      #delete {
+        width: 100px;
+        font-size: 15px;
+        padding-top: 4px;
+        padding-bottom: 4px;
+        background-color: hsl(3, 100%, 54%);
+        border: none;
+        margin-top: 20px;
+        transition: 0.25s;
+      }
+
+      #delete:hover {
+        background-color: hsl(3, 100%, 64%);
+      }
+
+      #newcommennt {
+        margin-top: 15px;
+        margin-bottom: 15px;
+      }
+
+      #newcommennt input {
+        width: 30%;
+        height: 30px;
+        padding: 10px;
+        background-color: rgb(63, 78, 119);
+        border: 0.5px solid black;
+        margin-right: 10px;
+        color: white;
+      }
+
+      #newcommennt button {
+        width: 10%;
+        height: 30px;
+        background-color: rgb(44, 73, 154);
+        border: 0.5px solid black;
+        margin-right: 10px;
+        color: white;
+        cursor: pointer;
+        border: 0.5px solid black;
+        transition: 0.5s;
+      }
+
+      #newcommennt button:hover {
+        background-color: hsl(224, 56%, 49%);
+      }
+
+      .comment {
+        padding: 10px;
+        border: 0.5px solid #658aae;
+      }
+
+      .header-commet a {
+        color: white;
+        text-decoration: none;
+        font-size: 20px;
+        font-weight: bold;
+        transition: 0.5s;
+      }
+      .header-commet a:hover {
+        color: rgb(86, 255, 255);
+      }
+    </style>
+    <title>Forum</title>
+  </head>
+  <body>
+    <div id="background">
+      <header id="forum-header">
+        <div id="forum-header-left">
+          <h1 id="logo-text">GALAXYVIRUS FORUM</h1>
+        </div>
+        <div id="forum-header-right">
+          <a href="/forum/user/<%= accountLinnk %>" id="header-user">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke-width="1.5"
+              stroke="currentColor"
+              class="w-6 h-6"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                d="M17.982 18.725A7.488 7.488 0 0012 15.75a7.488 7.488 0 00-5.982 2.975m11.963 0a9 9 0 10-11.963 0m11.963 0A8.966 8.966 0 0112 21a8.966 8.966 0 01-5.982-2.275M15 9.75a3 3 0 11-6 0 3 3 0 016 0z"
+              />
+            </svg>
+          </a>
+        </div>
+      </header>
+      <br />
+      <main id="forum-body">
+        <div id="body-nav">
+          <nav class="nav-bar">
+            <ul>
+              <li><a href="/forum" id="body-selected-location">Home</a></li>
+              <li><a href="">About us</a></li>
+              <li><a href="">Donate</a></li>
+              <li><a href="">Support</a></li>
+              <li><a href="">Contact</a></li>
+            </ul>
+          </nav>
+        </div>
+        <div id="body-toolbar">
+          <div id="body-toolbar-left">
+            <h1 id="title"><%= title %></h1>
+            <p id="author">
+              <a href="/forum/user/<%= authoruuid %>"><%= author %></a>
+            </p>
+            <p id="information-post">Create date: <%= createAt %></p>
+            <p id="information-post">PostID: <%= postid %></p>
+            <h3 id="minicontent"><%= subtitle %></h3>
+            <p id="content"><%= content %></p>
+            <a href="/forum/post/edit/<%= postid %>">
+              <button id="edit">Edit</button>
+            </a>
+            <a href="/forum/post/delete/<%= postid %>">
+              <button id="delete">Delete</button>
+            </a>
+            <div id="newcommennt">
+              <form action="/forum/post/<%= postid %>" method="post">
+                <input type="text" placeholder="Comment" name="comment" />
+                <button>Comment</button>
+              </form>
+            </div>
+            <div id="commennt"><%- comment %></div>
+          </div>
+          <div id="body-toolbar-right">
+            <div id="body-information">
+              <h1>Thông tin cá nhân</h1>
+              <p>User: <%= ussername %></p>
+              <p>Rank: <%= rank %></p>
+            </div>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

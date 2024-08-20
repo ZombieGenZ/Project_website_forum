@@ -1,0 +1,50 @@
+.loader {
+  position: relative;
+  width: 20px * 4 + 10px * 3; 
+  height: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 auto;
+}
+
+.google-dot { 
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  animation: googleAnimation 2.5s infinite;
+}
+
+@keyframes googleAnimation {
+  33% { transform: translateY(-10px); }
+  66% { transform: translateY(10px); }
+  100% { transform: translateY(0); } 
+}
+
+.google-dot:nth-child(1) { 
+  background-color: #0057e7; 
+  animation-delay: 0s; 
+}
+.google-dot:nth-child(2) { 
+  background-color: #d62d20; 
+  animation-delay: 0.25s; 
+}
+.google-dot:nth-child(3) { 
+  background-color: #ffa700; 
+  animation-delay: 0.5s; 
+}
+.google-dot:nth-child(4) { 
+  background-color: #008744; 
+  animation-delay: 0.75s; 
+}
+
+body {
+ background-color: rgb(37, 47, 74);
+}
+
+.showbox {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}

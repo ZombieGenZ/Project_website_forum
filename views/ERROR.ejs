@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        * {
+            margin: 0;
+            box-sizing: border-box;
+          }
+          
+          /* Background */
+          
+          #background {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            top: 0;
+            left: 0;
+            background-image: none;
+            background-color: rgb(37, 47, 74);
+            background-repeat: repeat;
+            background-position: center;
+            background-size: cover;
+          }
+          
+          #background #err {
+            margin: auto;
+            font-size: 25px;
+            text-align: center;
+            color: white;
+          }
+
+          #background #err button {
+            margin-top: 20px;
+            font-size: 25px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+            padding-left: 20px;
+            padding-right: 20px;
+            background-color: rgb(55, 81, 152);
+            color: white;
+            border: 0.5px solid black;
+            cursor: pointer;
+            transition: 0.25s;
+          }
+          
+          #background #err button:hover {
+            background-color: hsl(224, 47%, 51%);
+          }
+    </style>
+    <title>Forum</title>
+</head>
+<body>
+    <div id="background">
+        <div id="err">
+            <h1><%= ErrorCode %></h1>
+            <h3><%= ErrorMessage %></h3>
+            <a href="/login"><button>Về trang chủ</button></a>
+        </div>
+    </div>
+</body>
+</html>

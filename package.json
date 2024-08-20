@@ -1,0 +1,29 @@
+{
+  "name": "nodejs_db",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "devstart": "nodemon server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "connect-mongo": "^5.1.0",
+    "cripto": "^1.1.4",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0",
+    "jsdom": "^24.0.0",
+    "moment": "^2.30.1",
+    "mongoose": "^8.3.1",
+    "nanoid": "^5.0.7",
+    "nodejs_db": "file:",
+    "uuid": "^9.0.1"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}
